@@ -21,11 +21,14 @@
   <script>
     let quote = 'belum ada quote'
 
-    axios.get('http://fortunecookieapi.herokuapp.com/v1/cookie')
+    axios.post('http://localhost:3000/birds', {
+      legs: 4,
+      color: 'yellow',
+      canFly: false
+    })
         .then(function (response) {
           // handle success
-          quote = response.data[0].fortune.message
-          document.getElementById('quote').innerHTML = quote
+          quote = response.data
           console.log(quote);
         })
         .catch(function (error) {
