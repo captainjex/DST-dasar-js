@@ -9,11 +9,29 @@
 <body>
   <h1>belajar vuejs</h1>
   <div id="app">
+    <strong>Lakon</strong>
     <div>
       {{ score }}
     </div>
-    <button @click="kurangScore">-</button>
-    <button @click="tambahScore">+</button>
+    <button :disabled="score < 1 || isGameEnd" @click="kurangScore('score')">-</button>
+    <button v-bind:disabled="isGameEnd" @click="tambahScore('score')">+</button>
+
+    <div style="margin:32px;"></div>
+    <strong>Musuh</strong>
+    <div>
+      {{ scoreMusuh }}
+    </div>
+    <button :disabled="scoreMusuh < 1 || isGameEnd" @click="kurangScore('scoreMusuh')">-</button>
+    <button :disabled="isGameEnd" @click="tambahScore('scoreMusuh')">+</button>
+
+    <div style="margin:32px;"></div>
+
+    pemenangnya adalah {{ winner }}
+    <br>
+    selisihnya: {{ selisih }}
+
+    <hr>
+    {{ 3 == '3' }}
   </div>
 
   <script src="./js/vue.js"></script>
@@ -22,20 +40,39 @@
       el: '#app',
       data: {
         score: 0,
+        scoreMusuh: 0,
+        contoh: null
+      },
+      computed: {
+        winner () {
+          if (this.score > this.scoreMusuh) {
+            return 'Lakon'
+          } else if (this.score == this.scoreMusuh) {
+            return 'IMBANG'
+          } else {
+            return 'Musuh'
+          }
+        },
+        selisih () {
+          return Math.abs(this.score - this.scoreMusuh)
+        },
+        isGameEnd () {
+          return this.score > 9 || this.scoreMusuh > 9
+        }
       },
       watch: {
-        score () {
-          if (this.score > 9) {
-            alert('horeee menang')
+        score (newVal) {
+          if (newVal > 9) {
+            alert('horeee lakon menang')
           }
         }
       },
       methods: {
-        tambahScore () {
-          this.score += 1
+        tambahScore (target) {
+          ++this[target]
         },
-        kurangScore () {
-          --this.score
+        kurangScore (target) {
+          --this[target]
         }
       }
     })
