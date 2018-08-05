@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>belajar vuejs</h1>
+  <div id="app">
+    <div>
+      {{ score }}
+    </div>
+    <button @click="kurangScore">-</button>
+    <button @click="tambahScore">+</button>
+  </div>
+
+  <script src="./js/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        score: 0,
+      },
+      watch: {
+        score () {
+          if (this.score > 9) {
+            alert('horeee menang')
+          }
+        }
+      },
+      methods: {
+        tambahScore () {
+          this.score += 1
+        },
+        kurangScore () {
+          --this.score
+        }
+      }
+    })
+  </script>
+</body>
+</html>

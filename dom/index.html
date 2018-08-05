@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Sinau DOM</h1>
+  <div id="score">
+    <p>
+      0
+    </p>
+  </div>
+  <button id="btnMinus">-</button>
+  <button onclick="onClickBtnPlus()" id="btnPlus">+</button>
+
+  <button id="btnTest">TES</button>
+  <script>
+    console.log('ayo sinau dom');
+
+    let txtScore = document.getElementById('score')
+    let btnPlus = document.getElementById('btnPlus')
+    let btnMinus = document.getElementById('btnMinus')
+    let btnTest = document.getElementById('btnTest')
+
+    let scoreChild = txtScore.childNodes
+    console.log('score', scoreChild[1].innerHTML);
+
+    let score = 99
+    txtScore.innerHTML = score
+
+    function onClickBtnPlus () {
+      console.log('hore di klik');
+      txtScore.innerHTML = ++score
+    }
+    let onClickBtnMinus = () => {
+      txtScore.innerHTML = --score
+    }
+    // btnPlus.addEventListener('click', onClickBtnPlus)
+    btnMinus.addEventListener('mouseover', onClickBtnMinus)
+
+    let birds = ['kakaktua', 'pinguin', 'emprit']
+    let kakaktua = {
+      legs: 2,
+      color: 'blue',
+      canFly: true
+    }
+    let display = 'legs'
+    console.log(kakaktua.legs);
+    console.log(kakaktua[display]);
+
+    btnTest.addEventListener('click', function() {
+      display = 'color'
+      console.log(kakaktua[display]);
+    })
+
+    birds = [
+      {
+        legs: 2,
+        color: 'blue',
+        canFly: true
+      },
+      {
+        legs: 2,
+        color: 'green',
+        canFly: true
+      },
+      {
+        legs: 2,
+        color: 'brown',
+        canFly: false
+      }
+    ]
+
+    console.log(birds[1].legs);
+    console.log('array asli', birds);
+
+    birds.shift()
+    console.log('array shift', birds);
+    birds.unshift({})
+    console.log('array unshift', birds);
+
+    let arrayBirdColor = birds.map(item => {
+        return item.color
+    })
+    console.log('warna warna burung', arrayBirdColor);
+
+    setTimeout(() => {
+      console.log('berhasil');
+    }, 5000)
+
+    console.log('mengirim...');
+
+
+    // console.log('budi');
+
+
+  </script>
+</body>
+</html>

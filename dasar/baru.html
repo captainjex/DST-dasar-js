@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  hello world
+  <!-- <form action="login.php" method="post">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <button type="submit">kirim</button>
+  </form> -->
+  <div id="quote">belum ada quote</div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./js/dasar.js"></script>
+  <script>
+    let quote = 'belum ada quote'
+
+    axios.get('http://fortunecookieapi.herokuapp.com/v1/cookie')
+        .then(function (response) {
+          // handle success
+          quote = response.data[0].fortune.message
+          document.getElementById('quote').innerHTML = quote
+          console.log(quote);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+    console.log(quote);
+
+  </script>
+</body>
+</html>
